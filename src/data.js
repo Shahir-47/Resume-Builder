@@ -374,7 +374,6 @@ export const educationForm = {
 		},
 		{ label: "Link", type: "url", name: "universityLink" },
 		{ label: "Degree", type: "text", name: "degree" },
-		{ label: "Location", type: "text", name: "location" },
 		{ label: "Graduation Month & Year", type: "month", name: "graduationDate" },
 		{
 			label: "GPA",
@@ -384,7 +383,7 @@ export const educationForm = {
 			min: "0",
 			max: "4",
 		},
-		{ label: "Relevant Coursework", type: "text", name: "coursework" },
+		{ label: "Relevant Coursework", type: "textarea", name: "coursework" },
 	],
 };
 

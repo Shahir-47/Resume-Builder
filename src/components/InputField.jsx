@@ -22,6 +22,8 @@ function InputField({ label, type, name, value, onChange, required, error }) {
 						</option>
 					))}
 				</select>
+			) : type === "textarea" ? (
+				<textarea id={name} name={name} value={value} onChange={onChange} />
 			) : (
 				<input
 					type={type}
