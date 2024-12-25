@@ -31,13 +31,28 @@ function InputForm() {
 	const [activeAccordionId, setActiveAccordionId] = useState(null);
 	const [sections, setSections] = useState(() => {
 		const savedSections = localStorage.getItem("sectionsData");
-		return savedSections
-			? JSON.parse(savedSections)
-			: sectionsData.map((section, index) => ({
-					...section,
-					id: `${section.title}-${index}`,
-			  }));
+		const defaultSections = sectionsData.map((section, index) => ({
+			...section,
+			id: `${section.title}-${index}`,
+		}));
+
+		if (savedSections) {
+			// Merge old data with new data
+			const parsedSavedSections = JSON.parse(savedSections);
+			const mergedSections = defaultSections.map((defaultSection) => {
+				const savedSection = parsedSavedSections.find(
+					(saved) => saved.title === defaultSection.title
+				);
+				return savedSection
+					? { ...defaultSection, ...savedSection }
+					: defaultSection;
+			});
+			return mergedSections;
+		}
+
+		return defaultSections;
 	});
+
 	const [isAddingSection, setIsAddingSection] = useState(false);
 	const [newSectionName, setNewSectionName] = useState("");
 	const [newSectionType, setNewSectionType] = useState("Education");

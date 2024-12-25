@@ -463,6 +463,12 @@ export const sectionsData = [
 		type: "Achievement",
 	},
 	{
+		title: "Publications",
+		data: publicationItems.data,
+		form: publicationForm,
+		type: "Publication",
+	},
+	{
 		title: "Certifications",
 		data: certificationsItems.data,
 		form: certificationsForm,
@@ -491,12 +497,6 @@ export const sectionsData = [
 		data: interestsItems.data,
 		form: interestsForm,
 		type: "Interest",
-	},
-	{
-		title: "Publications",
-		data: publicationItems.data,
-		form: publicationForm,
-		type: "Publication",
 	},
 	{
 		title: "Other",
