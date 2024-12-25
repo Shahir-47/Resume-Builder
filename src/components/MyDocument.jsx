@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
 	skillItem: {
 		marginBottom: 3,
 		flexDirection: "row",
+		flexWrap: "wrap",
 	},
 	skillText: {
 		fontSize: 10,
