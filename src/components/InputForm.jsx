@@ -31,45 +31,13 @@ function InputForm() {
 	const [activeAccordionId, setActiveAccordionId] = useState(null);
 	const [sections, setSections] = useState(() => {
 		const savedSections = localStorage.getItem("sectionsData");
-		const defaultSections = sectionsData.map((section, index) => ({
-			...section,
-			id: `${section.title}-${index}`,
-		}));
-
-		if (savedSections) {
-			const parsedSavedSections = JSON.parse(savedSections);
-
-			// Merge new sections with existing ones
-			const mergedSections = defaultSections.map((defaultSection) => {
-				const existingSection = parsedSavedSections.find(
-					(savedSection) => savedSection.title === defaultSection.title
-				);
-
-				if (existingSection) {
-					// Merge new fields with existing fields
-					return {
-						...defaultSection,
-						...existingSection,
-						data: existingSection.data || defaultSection.data,
-					};
-				}
-				return defaultSection; // Add new section if not present
-			});
-
-			// Add any new sections that aren't in `parsedSavedSections`
-			const additionalSections = parsedSavedSections.filter(
-				(savedSection) =>
-					!defaultSections.some(
-						(defaultSection) => defaultSection.title === savedSection.title
-					)
-			);
-
-			return [...mergedSections, ...additionalSections];
-		}
-
-		return defaultSections; // No saved data, use default
+		return savedSections
+			? JSON.parse(savedSections)
+			: sectionsData.map((section, index) => ({
+					...section,
+					id: `${section.title}-${index}`,
+			  }));
 	});
-
 	const [isAddingSection, setIsAddingSection] = useState(false);
 	const [newSectionName, setNewSectionName] = useState("");
 	const [newSectionType, setNewSectionType] = useState("Education");
