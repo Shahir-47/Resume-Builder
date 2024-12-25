@@ -37,20 +37,37 @@ function InputForm() {
 		}));
 
 		if (savedSections) {
-			// Merge old data with new data
 			const parsedSavedSections = JSON.parse(savedSections);
+
+			// Merge new sections with existing ones
 			const mergedSections = defaultSections.map((defaultSection) => {
-				const savedSection = parsedSavedSections.find(
-					(saved) => saved.title === defaultSection.title
+				const existingSection = parsedSavedSections.find(
+					(savedSection) => savedSection.title === defaultSection.title
 				);
-				return savedSection
-					? { ...defaultSection, ...savedSection }
-					: defaultSection;
+
+				if (existingSection) {
+					// Merge new fields with existing fields
+					return {
+						...defaultSection,
+						...existingSection,
+						data: existingSection.data || defaultSection.data,
+					};
+				}
+				return defaultSection; // Add new section if not present
 			});
-			return mergedSections;
+
+			// Add any new sections that aren't in `parsedSavedSections`
+			const additionalSections = parsedSavedSections.filter(
+				(savedSection) =>
+					!defaultSections.some(
+						(defaultSection) => defaultSection.title === savedSection.title
+					)
+			);
+
+			return [...mergedSections, ...additionalSections];
 		}
 
-		return defaultSections;
+		return defaultSections; // No saved data, use default
 	});
 
 	const [isAddingSection, setIsAddingSection] = useState(false);
