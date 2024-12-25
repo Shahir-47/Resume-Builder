@@ -21,6 +21,14 @@ Font.register({
 			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf",
 			fontWeight: 600,
 		},
+		{
+			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-700.ttf",
+			fontWeight: 700,
+		},
+		{
+			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-800.ttf",
+			fontWeight: 800,
+		},
 	],
 });
 import PhoneIcon from "../assets/phone.png";
@@ -43,6 +51,7 @@ const styles = StyleSheet.create({
 	header: {
 		marginBottom: 5,
 		textAlign: "center",
+		fontWeight: 800,
 	},
 	linkBlack: {
 		fontSize: 10,
@@ -63,7 +72,7 @@ const styles = StyleSheet.create({
 	},
 	boldText: {
 		fontSize: 10,
-		fontWeight: 600, // Use the registered bold font
+		fontWeight: 700, // Use the registered bold font
 	},
 	icon: {
 		width: 16,
@@ -84,7 +93,7 @@ const styles = StyleSheet.create({
 	},
 	sectionTitle: {
 		fontSize: 12,
-		fontWeight: 900,
+		fontWeight: 800,
 	},
 	separator: {
 		borderBottomWidth: 1,
@@ -139,7 +148,7 @@ const styles = StyleSheet.create({
 	},
 	projectName: {
 		fontSize: 10,
-		fontWeight: 600,
+		fontWeight: 700,
 		marginRight: 2,
 		color: "#000000",
 	},
@@ -408,9 +417,12 @@ const MyDocument = ({ sections, title }) => (
 
 										{/* Relevant Coursework */}
 										{education?.content?.coursework && (
-											<View style={styles.bulletPoints}>
+											<View style={styles.skillItem}>
+												<Text style={styles.boldText}>
+													{`Relevant Coursework: `}
+												</Text>
 												<Text style={styles.bulletText}>
-													• Relevant Coursework: {education.content.coursework}
+													{education.content.coursework}
 												</Text>
 											</View>
 										)}
