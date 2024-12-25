@@ -22,6 +22,7 @@ import {
 	languagesForm,
 	hobbiesForm,
 	interestsForm,
+	publicationForm,
 	otherForm,
 } from "../data.js";
 import "../styles/InputForm.css";
@@ -58,6 +59,7 @@ function InputForm() {
 		Language: languagesForm,
 		Hobby: hobbiesForm,
 		Interest: interestsForm,
+		Publication: publicationForm,
 		Other: otherForm,
 	};
 

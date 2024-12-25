@@ -4,6 +4,7 @@ export const workExperienceForm = {
 	fields: [
 		{ label: "Company Name", type: "text", name: "companyName" },
 		{ label: "Position", type: "text", name: "position", required: true },
+		{ label: "Link", type: "url", name: "link" },
 		{ label: "Location", type: "text", name: "location" },
 		{ label: "Start Date", type: "month", name: "startDate" },
 		{
@@ -36,6 +37,7 @@ export const achievementsForm = {
 	id: "achievements-details",
 	fields: [
 		{ label: "Achievement", type: "text", name: "achievement", required: true },
+		{ label: "link", type: "url", name: "achievementLink" },
 		{ label: "Date", type: "month", name: "date" },
 	],
 };
@@ -48,6 +50,7 @@ export const achievementsItems = {
 			content: {
 				achievement: "Achievement 1",
 				date: "2021-06",
+				achievementLink: "https://achievement1.com",
 				description: ["Won first place in competition", "Received award"],
 			},
 		},
@@ -234,6 +237,44 @@ export const otherItems = {
 	],
 };
 
+export const publicationForm = {
+	id: "publication-details",
+	fields: [
+		{ label: "Title", type: "text", name: "title", required: true },
+		{ label: "Subtext", type: "text", name: "subtext" },
+		{ label: "Date", type: "month", name: "date" },
+		{ label: "Location", type: "text", name: "location" },
+		{ label: "Link", type: "url", name: "link" },
+	],
+};
+
+export const publicationItems = {
+	form: publicationForm,
+	data: [
+		{
+			title: "Publication 1",
+			content: {
+				title: "Publication 1",
+				subtext: "Subtext 1",
+				date: "2021-06",
+				location: "Location 1",
+				link: "https://publication1.com",
+				description: ["Description 1", "Description 2"],
+			},
+		},
+		{
+			title: "Publication 2",
+			content: {
+				title: "Publication 2",
+				date: "2020-12",
+				location: "Location 2",
+				link: "https://publication2.com",
+				description: ["Description 3", "Description 4"],
+			},
+		},
+	],
+};
+
 export const projectItems = {
 	form: projectForm,
 	data: [
@@ -267,6 +308,7 @@ export const workExperienceItems = {
 			content: {
 				companyName: "Google",
 				position: "Software Engineer",
+				link: "https://google.com",
 				location: "Mountain View, CA",
 				startDate: "2020-06",
 				endDate: "2021-08",
@@ -303,20 +345,22 @@ export const personalDetailForm = {
 	fields: [
 		{ label: "Full Name", type: "text", name: "fullName" },
 		{ label: "Phone Number", type: "tel", name: "phoneNumber" },
+		{ label: "Address", type: "text", name: "address" },
 		{ label: "Email", type: "email", name: "email" },
 		{ label: "GitHub", type: "url", name: "github" },
 		{ label: "LinkedIn", type: "url", name: "linkedin" },
-		{ label: "Address", type: "text", name: "address" },
+		{ label: "Personal Website", type: "url", name: "personalWebsite" },
 	],
 };
 
 export const personalDetails = {
 	fullName: "John Doe",
 	phoneNumber: "123-456-7890",
+	address: "City, State 12345",
 	email: "johndoe@example.com",
 	github: "github.com/johndoe",
 	linkedin: "linkedin.com/in/johndoe",
-	address: "City, State 12345",
+	personalWebsite: "johndoe.com",
 };
 
 export const educationForm = {
@@ -328,6 +372,7 @@ export const educationForm = {
 			name: "universityName",
 			required: true,
 		},
+		{ label: "Link", type: "url", name: "universityLink" },
 		{ label: "Degree", type: "text", name: "degree" },
 		{ label: "Location", type: "text", name: "location" },
 		{ label: "Graduation Month & Year", type: "month", name: "graduationDate" },
@@ -362,6 +407,7 @@ export const educationItems = {
 			title: "Hogwarts School of Witchcraft and Wizardry",
 			content: {
 				universityName: "Hogwarts School",
+				universityLink: "https://hogwarts.com",
 				degree: "Defense Against the Dark Arts",
 				location: "Scotland",
 				graduationDate: "2020-05",
@@ -445,6 +491,12 @@ export const sectionsData = [
 		data: interestsItems.data,
 		form: interestsForm,
 		type: "Interest",
+	},
+	{
+		title: "Publications",
+		data: publicationItems.data,
+		form: publicationForm,
+		type: "Publication",
 	},
 	{
 		title: "Other",

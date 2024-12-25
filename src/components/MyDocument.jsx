@@ -28,6 +28,7 @@ import EmailIcon from "../assets/email.png";
 import GitHubIcon from "../assets/github.png";
 import LinkedInIcon from "../assets/linkedin.png";
 import AddressIcon from "../assets/address.png";
+import website from "../assets/website.png";
 
 // Create styles for the PDF
 const styles = StyleSheet.create({
@@ -165,6 +166,15 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 	},
+	publicationItem: {
+		marginBottom: 1,
+	},
+	publicationRow: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		marginBottom: 0,
+		marginLeft: 0,
+	},
 	otherItem: {
 		marginBottom: 1,
 	},
@@ -179,6 +189,10 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 		marginBottom: 0,
 		marginLeft: 5,
+	},
+	publicationHeader: {
+		flexDirection: "row",
+		alignItems: "center",
 	},
 	otherHeader: {
 		flexDirection: "row",
@@ -196,8 +210,11 @@ const styles = StyleSheet.create({
 const extractUsername = (url) => {
 	try {
 		const parsedUrl = new URL(url.startsWith("http") ? url : `https://${url}`);
-		const pathSegments = parsedUrl.pathname.split("/");
-		return pathSegments[pathSegments.length - 1];
+		const domain = parsedUrl.hostname.replace(/^www\./, "");
+		const path = parsedUrl.pathname.startsWith("/")
+			? parsedUrl.pathname.slice(1)
+			: parsedUrl.pathname;
+		return `${domain}/${path}`;
 	} catch (error) {
 		console.error("Invalid URL:", url);
 		return url; // Return the original URL if there's an error
@@ -269,6 +286,20 @@ const MyDocument = ({ sections, title }) => (
 										</Link>
 									</View>
 								)}
+								{section.data?.address && (
+									<View style={styles.contactItem}>
+										<Image style={styles.icon} src={AddressIcon} />
+										{/* Link component used for clickable address */}
+										<Link
+											style={styles.linkBlack}
+											src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+												section.data.address
+											)}`}
+										>
+											{section.data.address}
+										</Link>
+									</View>
+								)}
 								{section.data?.email && (
 									<View style={styles.contactItem}>
 										<Image style={styles.icon} src={EmailIcon} />
@@ -297,17 +328,14 @@ const MyDocument = ({ sections, title }) => (
 										</Link>
 									</View>
 								)}
-								{section.data?.address && (
+								{section.data?.personalWebsite && (
 									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={AddressIcon} />
-										{/* Link component used for clickable address */}
+										<Image style={styles.icon} src={website} />
 										<Link
 											style={styles.linkBlack}
-											src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-												section.data.address
-											)}`}
+											src={`https://${section.data.personalWebsite}`}
 										>
-											{section.data.address}
+											{extractUsername(section.data.personalWebsite)}
 										</Link>
 									</View>
 								)}
@@ -327,34 +355,48 @@ const MyDocument = ({ sections, title }) => (
 							{section.type === "Education" &&
 								section.data.map((education, index) => (
 									<View key={index} style={styles.educationItem}>
-										{/* University Name and Location */}
+										{/* University Name and Graduation Date */}
 										<View style={styles.universityRow}>
+											<View style={styles.certificationHeader}>
+												<Text style={styles.boldText}>
+													{education?.content?.universityName + " " || ""}
+												</Text>
+												{education?.content?.universityLink && (
+													<Text style={styles.boldText}>
+														[
+														<Link
+															style={styles.projectLink}
+															src={education.content.universityLink}
+														>
+															{education.content.universityLink}
+														</Link>
+														]
+													</Text>
+												)}
+											</View>
 											<Text style={styles.boldText}>
-												{education?.content?.universityName || ""}
-											</Text>
-											<Text style={styles.boldText}>
-												{education?.content?.location || ""}
+												{education?.content?.graduationDate
+													? new Date(education.content.graduationDate) >
+													  new Date()
+														? `Expected ${formatDate(
+																education.content.graduationDate
+														  )}`
+														: formatDate(education.content.graduationDate)
+													: ""}
 											</Text>
 										</View>
 
-										{/* Degree and Graduation Date */}
+										{/* Degree and GPA */}
 										<View style={styles.degreeRow}>
 											<Text style={styles.boldText}>
 												{education?.content?.degree || ""}
 											</Text>
 											<Text style={styles.text}>
-												{formatDate(education?.content?.graduationDate) || ""}
+												{education?.content?.gpa
+													? `GPA: ${education.content.gpa}`
+													: ""}
 											</Text>
 										</View>
-
-										{/* GPA */}
-										{education?.content?.gpa && (
-											<View style={styles.bulletPoints}>
-												<Text style={styles.bulletText}>
-													• GPA: {education.content.gpa}
-												</Text>
-											</View>
-										)}
 
 										{/* Relevant Coursework */}
 										{education?.content?.coursework && (
@@ -405,9 +447,23 @@ const MyDocument = ({ sections, title }) => (
 
 										{/* Company Name and Dates */}
 										<View style={styles.companyRow}>
-											<Text style={styles.boldText}>
-												{work?.content?.companyName || ""}
-											</Text>
+											<View style={styles.certificationHeader}>
+												<Text style={styles.boldText}>
+													{work?.content?.companyName + " " || ""}
+												</Text>
+												{work?.content?.link && (
+													<Text style={styles.boldText}>
+														[
+														<Link
+															style={styles.projectLink}
+															src={work.content.link}
+														>
+															{work.content.link}
+														</Link>
+														]
+													</Text>
+												)}
+											</View>
 											<Text style={styles.text}>
 												{formatDateRange(
 													work?.content?.startDate,
@@ -467,9 +523,23 @@ const MyDocument = ({ sections, title }) => (
 									<View key={index} style={styles.achievementItem}>
 										{/* Achievement Name and Date */}
 										<View style={styles.achievementRow}>
-											<Text style={styles.boldText}>
-												{achievement?.content?.achievement || ""}
-											</Text>
+											<View style={styles.certificationHeader}>
+												<Text style={styles.boldText}>
+													{achievement?.content?.achievement + " " || ""}
+												</Text>
+												{achievement?.content?.achievementLink && (
+													<Text style={styles.boldText}>
+														[
+														<Link
+															style={styles.projectLink}
+															src={achievement.content.achievementLink}
+														>
+															{achievement.content.achievementLink}
+														</Link>
+														]
+													</Text>
+												)}
+											</View>
 											<Text style={styles.text}>
 												{formatDate(achievement?.content?.date) || ""}
 											</Text>
@@ -485,6 +555,67 @@ const MyDocument = ({ sections, title }) => (
 												))}
 											</View>
 										)}
+									</View>
+								))}
+
+							{section.type === "Publication" &&
+								section.data.map((publication, index) => (
+									<View key={index} style={styles.publicationItem}>
+										{/* Title, Link and Location */}
+										<View style={styles.publicationRow}>
+											<View style={styles.publicationHeader}>
+												<Text style={styles.boldText}>
+													{publication?.content?.title + " " || ""}
+												</Text>
+												{publication?.content?.link && (
+													<Text style={styles.boldText}>
+														[
+														<Link
+															style={styles.projectLink}
+															src={publication.content.link}
+														>
+															{publication.content.link}
+														</Link>
+														]
+													</Text>
+												)}
+											</View>
+											<Text style={styles.boldText}>
+												{publication?.content?.location || ""}
+											</Text>
+										</View>
+
+										{/* Subtext and Date or Description and Date */}
+										{publication?.content?.subtext ? (
+											<View style={styles.subtextRow}>
+												<Text style={styles.boldText}>
+													{publication.content.subtext}
+												</Text>
+												<Text style={styles.text}>
+													{formatDate(publication?.content?.date) || ""}
+												</Text>
+											</View>
+										) : (
+											<View style={styles.specialCase}>
+												{publication?.content?.description?.[0] && (
+													<Text style={styles.bulletText}>
+														• {publication.content.description[0]}
+													</Text>
+												)}
+												<Text style={styles.text}>
+													{formatDate(publication?.content?.date) || ""}
+												</Text>
+											</View>
+										)}
+
+										{/* Additional Descriptions */}
+										{publication?.content?.description
+											?.slice(publication.content.subtext ? 0 : 1)
+											.map((desc, idx) => (
+												<View key={idx} style={styles.bulletPoints}>
+													<Text style={styles.bulletText}>• {desc}</Text>
+												</View>
+											))}
 									</View>
 								))}
 
