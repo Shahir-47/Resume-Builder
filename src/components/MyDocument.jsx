@@ -312,7 +312,7 @@ const MyDocument = ({ sections, title }) => (
 										<Image style={styles.icon} src={GitHubIcon} />
 										<Link
 											style={styles.linkBlack}
-											src={`https://${section.data.github}`}
+											src={`https://${extractUsername(section.data.github)}`}
 										>
 											{extractUsername(section.data.github)}
 										</Link>
@@ -323,7 +323,7 @@ const MyDocument = ({ sections, title }) => (
 										<Image style={styles.icon} src={LinkedInIcon} />
 										<Link
 											style={styles.linkBlack}
-											src={`https://${section.data.linkedin}`}
+											src={`https://${extractUsername(section.data.linkedin)}`}
 										>
 											{extractUsername(section.data.linkedin)}
 										</Link>
@@ -334,7 +334,9 @@ const MyDocument = ({ sections, title }) => (
 										<Image style={styles.icon} src={website} />
 										<Link
 											style={styles.linkBlack}
-											src={`https://${section.data.personalWebsite}`}
+											src={`https://${extractUsername(
+												section.data.personalWebsite
+											)}`}
 										>
 											{extractUsername(section.data.personalWebsite)}
 										</Link>
