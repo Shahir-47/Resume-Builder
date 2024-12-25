@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		flexWrap: "wrap",
 		justifyContent: "center",
-		gap: 10,
+		columnGap: 10,
+		rowGap: 2,
 		marginBottom: 5,
 	},
 	contactItem: {
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
 		marginBottom: 1,
 	},
 	educationItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	universityRow: {
 		flexDirection: "row",
@@ -109,14 +110,14 @@ const styles = StyleSheet.create({
 		fontSize: 10,
 	},
 	skillItem: {
-		marginBottom: 0,
+		marginBottom: 3,
 		flexDirection: "row",
 	},
 	skillText: {
 		fontSize: 10,
 	},
 	workExperienceItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	positionRow: {
 		flexDirection: "row",
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
 		marginBottom: 0,
 	},
 	projectItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	projectHeader: {
 		flexDirection: "row",
@@ -147,7 +148,7 @@ const styles = StyleSheet.create({
 		color: "#0000FF",
 	},
 	achievementItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	achievementRow: {
 		flexDirection: "row",
@@ -155,7 +156,7 @@ const styles = StyleSheet.create({
 		marginBottom: 0,
 	},
 	certificationItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	certificationRow: {
 		flexDirection: "row",
@@ -167,7 +168,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	publicationItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	publicationRow: {
 		flexDirection: "row",
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
 		marginLeft: 0,
 	},
 	otherItem: {
-		marginBottom: 1,
+		marginBottom: 3,
 	},
 	otherRow: {
 		flexDirection: "row",
@@ -346,7 +347,12 @@ const MyDocument = ({ sections, title }) => (
 					{/* Dynamically Render Sections Based on Title */}
 					{section.data.length > 0 && (
 						<View>
-							<Text style={styles.sectionTitle}>
+							<Text
+								style={[
+									styles.sectionTitle,
+									index === 0 ? { marginTop: 0 } : { marginTop: 2 },
+								]}
+							>
 								{section.title.toUpperCase()}
 							</Text>
 							<View style={styles.separator} />
