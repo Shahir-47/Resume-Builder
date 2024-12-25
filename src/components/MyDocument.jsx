@@ -15,7 +15,12 @@ Font.register({
 	family: "Open Sans",
 	fonts: [
 		{
+			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-300.ttf",
+			fontWeight: 300,
+		},
+		{
 			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf",
+			fontWeight: 400,
 		},
 		{
 			src: "https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf",
@@ -69,6 +74,10 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontSize: 10,
+	},
+	normalText: {
+		fontSize: 10,
+		fontWeight: 400,
 	},
 	boldText: {
 		fontSize: 10,
@@ -418,14 +427,12 @@ const MyDocument = ({ sections, title }) => (
 
 										{/* Relevant Coursework */}
 										{education?.content?.coursework && (
-											<View style={styles.skillItem}>
-												<Text style={styles.boldText}>
-													{`Relevant Coursework: `}
-												</Text>
-												<Text style={styles.bulletText}>
+											<Text style={styles.normalText}>
+												<Text>Relevant Coursework: </Text>
+												<Text style={styles.normalText}>
 													{education.content.coursework}
 												</Text>
-											</View>
+											</Text>
 										)}
 
 										{/* Description */}
