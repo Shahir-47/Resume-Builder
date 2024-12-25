@@ -18,7 +18,7 @@
 
 The Resume Builder Application is a web application designed to help users create, edit, and preview resumes in a structured format. Users can add various sections such as Personal Details, Education, Work Experience, Projects, Achievements, Certifications, Skills, Languages, Hobbies, Interests, and Others. The application also supports PDF preview of the generated resume.
 
-**Live Demo:** [Resume Builder](https://illustrious-fenglisu-b69eab.netlify.app/)
+**Live Demo:** [Resume Builder](https://resume-maker-template.netlify.app/)
 
 **Source Code:** [GitHub Repository](https://github.com/Shahir-47/CV-Application)
 
