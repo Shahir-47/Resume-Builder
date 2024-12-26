@@ -437,9 +437,14 @@ const MyDocument = ({ sections, title }) => (
 										{education?.content?.description?.length > 0 && (
 											<View style={styles.bulletPoints}>
 												{education.content.description.map((desc, idx) => (
-													<Text key={idx} style={styles.bulletText}>
-														• {desc}
-													</Text>
+													<View key={idx} style={{ flexDirection: "row" }}>
+														<Text key={idx} style={styles.bulletText}>
+															•{" "}
+														</Text>
+														<Text key={idx} style={styles.bulletText}>
+															{desc}
+														</Text>
+													</View>
 												))}
 											</View>
 										)}
@@ -502,9 +507,14 @@ const MyDocument = ({ sections, title }) => (
 										{work?.content?.description?.length > 0 && (
 											<View style={styles.bulletPoints}>
 												{work.content.description.map((desc, idx) => (
-													<Text key={idx} style={styles.bulletText}>
-														• {desc}
-													</Text>
+													<View key={idx} style={{ flexDirection: "row" }}>
+														<Text key={idx} style={styles.bulletText}>
+															•{" "}
+														</Text>
+														<Text key={idx} style={styles.bulletText}>
+															{desc}
+														</Text>
+													</View>
 												))}
 											</View>
 										)}
@@ -535,9 +545,14 @@ const MyDocument = ({ sections, title }) => (
 										{project?.content?.description?.length > 0 && (
 											<View style={styles.bulletPoints}>
 												{project.content.description.map((desc, idx) => (
-													<Text key={idx} style={styles.bulletText}>
-														• {desc}
-													</Text>
+													<View key={idx} style={{ flexDirection: "row" }}>
+														<Text key={idx} style={styles.bulletText}>
+															•{" "}
+														</Text>
+														<Text key={idx} style={styles.bulletText}>
+															{desc}
+														</Text>
+													</View>
 												))}
 											</View>
 										)}
@@ -575,9 +590,14 @@ const MyDocument = ({ sections, title }) => (
 										{achievement?.content?.description?.length > 0 && (
 											<View style={styles.bulletPoints}>
 												{achievement.content.description.map((desc, idx) => (
-													<Text key={idx} style={styles.bulletText}>
-														• {desc}
-													</Text>
+													<View key={idx} style={{ flexDirection: "row" }}>
+														<Text key={idx} style={styles.bulletText}>
+															•{" "}
+														</Text>
+														<Text key={idx} style={styles.bulletText}>
+															{desc}
+														</Text>
+													</View>
 												))}
 											</View>
 										)}
