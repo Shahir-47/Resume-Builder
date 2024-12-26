@@ -429,9 +429,7 @@ const MyDocument = ({ sections, title }) => (
 										{education?.content?.coursework && (
 											<Text style={styles.normalText}>
 												<Text>Relevant Coursework: </Text>
-												<Text style={styles.normalText}>
-													{education.content.coursework}
-												</Text>
+												{education.content.coursework}
 											</Text>
 										)}
 
