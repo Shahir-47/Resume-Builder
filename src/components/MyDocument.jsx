@@ -451,14 +451,10 @@ const MyDocument = ({ sections, title }) => (
 
 							{section.type === "Skill" &&
 								section.data.map((skill, index) => (
-									<View key={index} style={styles.skillItem}>
-										<Text style={styles.boldText}>
-											{skill?.content?.skill || ""}
-										</Text>
-										<Text style={styles.skillText}>
-											: {skill?.content?.specifics || ""}
-										</Text>
-									</View>
+									<Text key={index} style={{ fontSize: 10, marginBottom: 3 }}>
+										<Text>{skill?.content?.skill + ": " || ""}</Text>
+										<Text>{skill?.content?.specifics || ""}</Text>
+									</Text>
 								))}
 
 							{section.type === "Work Experience" &&
