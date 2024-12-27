@@ -29,6 +29,7 @@ export const projectForm = {
 			name: "projectName",
 			required: true,
 		},
+		{ label: "Technologies Used", type: "text", name: "technologies" },
 		{ label: "Link", type: "url", name: "projectUrl" },
 	],
 };
@@ -282,6 +283,7 @@ export const projectItems = {
 			title: "Project 1",
 			content: {
 				projectName: "Project 1",
+				technologies: "React, Node.js",
 				projectUrl: "https://project1.com",
 				description: ["Built a website", "Implemented user authentication"],
 			},

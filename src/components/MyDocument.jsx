@@ -49,8 +49,6 @@ const styles = StyleSheet.create({
 		flexDirection: "column",
 		backgroundColor: "#FFFFFF",
 		padding: 10,
-		paddingBottom: 0,
-		paddingTop: 5,
 		fontFamily: "Open Sans", // Use registered font family
 	},
 	header: {
@@ -525,9 +523,16 @@ const MyDocument = ({ sections, title }) => (
 								section.data.map((project, index) => (
 									<View key={index} style={styles.projectItem}>
 										<View style={styles.projectHeader}>
-											<Text style={styles.projectName}>
-												{project?.content?.projectName || ""}
-											</Text>
+											<View style={styles.certificationHeader}>
+												<Text style={styles.projectName}>
+													{project?.content?.projectName + " " || ""}
+												</Text>
+												{project?.content?.technologies && (
+													<Text style={styles.text}>
+														{`(` + project.content.technologies + `)`}
+													</Text>
+												)}
+											</View>
 											{project?.content?.projectUrl && (
 												<Text style={styles.projectName}>
 													[
