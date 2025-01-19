@@ -57,28 +57,28 @@ const styles = StyleSheet.create({
 		fontWeight: 800,
 	},
 	linkBlack: {
-		fontSize: 10,
+		fontSize: 9,
 		textDecoration: "underline",
 		color: "#000000", // Black link color
 	},
 	link: {
-		fontSize: 10, // Smaller font size for the link
+		fontSize: 9, // Smaller font size for the link
 		textDecoration: "underline",
 		color: "#0000FF", // Link color
 	},
 	spaceText: {
-		fontSize: 10,
+		fontSize: 9,
 		marginBottom: 1,
 	},
 	text: {
-		fontSize: 10,
+		fontSize: 9,
 	},
 	normalText: {
-		fontSize: 10,
+		fontSize: 9,
 		fontWeight: 400,
 	},
 	boldText: {
-		fontSize: 10,
+		fontSize: 9,
 		fontWeight: 700, // Use the registered bold font
 	},
 	icon: {
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		flexWrap: "wrap",
 		justifyContent: "center",
-		columnGap: 10,
+		columnGap: 3,
 		rowGap: 2,
 		marginBottom: 5,
 	},
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
 		marginLeft: 5,
 	},
 	bulletText: {
-		fontSize: 10,
+		fontSize: 9,
 	},
 	skillItem: {
 		marginBottom: 3,
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 		flexWrap: "wrap",
 	},
 	skillText: {
-		fontSize: 10,
+		fontSize: 9,
 	},
 	workExperienceItem: {
 		marginBottom: 3,
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
 		justifyContent: "space-between",
 	},
 	projectName: {
-		fontSize: 10,
+		fontSize: 9,
 		fontWeight: 700,
 		marginRight: 2,
 		color: "#000000",
@@ -285,7 +285,7 @@ const MyDocument = ({ sections, title }) => (
 					{section.type === "Personal" && (
 						<View>
 							<View style={styles.header}>
-								<Text style={{ fontSize: 20 }}>
+								<Text style={{ fontSize: 15 }}>
 									{section.data?.fullName || ""}
 								</Text>
 							</View>
@@ -293,21 +293,20 @@ const MyDocument = ({ sections, title }) => (
 							{/* Contact Information */}
 							<View style={styles.contactInfo}>
 								{section.data?.phoneNumber && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={PhoneIcon} />
-										{/* Link component used for clickable phone number */}
+									<Text style={[styles.contactItem, styles.text]}>
+										Phone:{" "}
 										<Link
 											style={styles.linkBlack}
 											src={`tel:${section.data.phoneNumber}`}
 										>
 											{section.data.phoneNumber}
-										</Link>
-									</View>
+										</Link>{" "}
+										|
+									</Text>
 								)}
 								{section.data?.address && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={AddressIcon} />
-										{/* Link component used for clickable address */}
+									<Text style={[styles.contactItem, styles.text]}>
+										Address:{" "}
 										<Link
 											style={styles.linkBlack}
 											src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -315,40 +314,49 @@ const MyDocument = ({ sections, title }) => (
 											)}`}
 										>
 											{section.data.address}
-										</Link>
-									</View>
+										</Link>{" "}
+										|
+									</Text>
 								)}
 								{section.data?.email && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={EmailIcon} />
-										<Text style={styles.linkBlack}>{section.data.email}</Text>
-									</View>
+									<Text style={[styles.contactItem, styles.text]}>
+										<Text>Email: </Text>
+										<Link
+											src={`mailto:${section.data.email}`}
+											style={styles.linkBlack}
+										>
+											{section.data.email}
+										</Link>{" "}
+										|
+									</Text>
 								)}
 								{section.data?.github && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={GitHubIcon} />
+									<Text style={[styles.contactItem, styles.text]}>
+										<Text>GitHub: </Text>
 										<Link
 											style={styles.linkBlack}
 											src={`https://${extractUsername(section.data.github)}`}
 										>
 											{extractUsername(section.data.github)}
-										</Link>
-									</View>
+										</Link>{" "}
+										|
+									</Text>
 								)}
 								{section.data?.linkedin && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={LinkedInIcon} />
+									<Text style={[styles.contactItem, styles.text]}>
+										LinkedIn:{" "}
 										<Link
 											style={styles.linkBlack}
 											src={`https://${extractUsername(section.data.linkedin)}`}
 										>
 											{extractUsername(section.data.linkedin)}
-										</Link>
-									</View>
+										</Link>{" "}
+										|
+									</Text>
 								)}
 								{section.data?.personalWebsite && (
-									<View style={styles.contactItem}>
-										<Image style={styles.icon} src={website} />
+									<Text style={[styles.contactItem, styles.text]}>
+										Website:{" "}
 										<Link
 											style={styles.linkBlack}
 											src={`https://${extractUsername(
@@ -357,7 +365,7 @@ const MyDocument = ({ sections, title }) => (
 										>
 											{extractUsername(section.data.personalWebsite)}
 										</Link>
-									</View>
+									</Text>
 								)}
 							</View>
 						</View>
@@ -451,7 +459,7 @@ const MyDocument = ({ sections, title }) => (
 
 							{section.type === "Skill" &&
 								section.data.map((skill, index) => (
-									<Text key={index} style={{ fontSize: 10, marginBottom: 3 }}>
+									<Text key={index} style={{ fontSize: 9, marginBottom: 3 }}>
 										<Text>{skill?.content?.skill + ": " || ""}</Text>
 										<Text>{skill?.content?.specifics || ""}</Text>
 									</Text>
