@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 	},
 	linkBlack: {
 		fontSize: 9,
-		textDecoration: "underline",
+		textDecoration: "none",
 		color: "#000000", // Black link color
 	},
 	link: {
