@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 	},
 	link: {
 		fontSize: 9, // Smaller font size for the link
-		textDecoration: "underline",
+		textDecoration: "none",
 		color: "#0000FF", // Link color
 	},
 	spaceText: {
@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
 	projectLink: {
 		fontSize: 9,
 		color: "#0000FF",
+		textDecoration: "none",
 	},
 	achievementItem: {
 		marginBottom: 3,
