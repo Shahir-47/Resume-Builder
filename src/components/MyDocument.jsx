@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 	page: {
 		flexDirection: "column",
 		backgroundColor: "#FFFFFF",
-		padding: 10,
+		padding: 20,
 		fontFamily: "Open Sans", // Use registered font family
 	},
 	header: {
