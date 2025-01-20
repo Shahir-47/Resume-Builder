@@ -5,7 +5,6 @@ import {
 	View,
 	Document,
 	StyleSheet,
-	Image,
 	Link,
 	Font,
 } from "@react-pdf/renderer";
@@ -36,12 +35,6 @@ Font.register({
 		},
 	],
 });
-import PhoneIcon from "../assets/phone.png";
-import EmailIcon from "../assets/email.png";
-import GitHubIcon from "../assets/github.png";
-import LinkedInIcon from "../assets/linkedin.png";
-import AddressIcon from "../assets/address.png";
-import website from "../assets/website.png";
 
 // Create styles for the PDF
 const styles = StyleSheet.create({
@@ -278,7 +271,7 @@ const formatLanguageProficiency = (language, proficiency) => {
 // Create Document Component
 const MyDocument = ({ sections, title }) => (
 	<Document title={title}>
-		<Page size="A4" style={styles.page}>
+		<Page size="LETTER" style={styles.page}>
 			{/* Header Section */}
 			{sections.map((section, index) => (
 				<View key={index}>
