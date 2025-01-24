@@ -80,16 +80,18 @@ const styles = StyleSheet.create({
 		marginRight: 5,
 	},
 	contactInfo: {
+		marginBottom: 5,
+	},
+	contactRow: {
 		flexDirection: "row",
 		flexWrap: "wrap",
 		justifyContent: "center",
-		columnGap: 3,
-		rowGap: 2,
-		marginBottom: 5,
+		alignItems: "center",
 	},
 	contactItem: {
 		flexDirection: "row",
 		alignItems: "center",
+		marginRight: 3,
 	},
 	sectionTitle: {
 		fontSize: 12,
@@ -286,71 +288,81 @@ const MyDocument = ({ sections, title }) => (
 
 							{/* Contact Information */}
 							<View style={styles.contactInfo}>
-								{section.data?.phoneNumber && (
-									<Text style={[styles.contactItem, styles.text]}>
-										Phone:{" "}
-										<Text style={styles.linkBlack}>
-											{section.data.phoneNumber}
-										</Text>{" "}
-										|
-									</Text>
-								)}
-								{section.data?.address && (
-									<Text style={[styles.contactItem, styles.text]}>
-										Address:{" "}
-										<Text style={styles.linkBlack}>{section.data.address}</Text>{" "}
-										|
-									</Text>
-								)}
-								{section.data?.email && (
-									<Text style={[styles.contactItem, styles.text]}>
-										<Text>Email: </Text>
-										<Link
-											src={`mailto:${section.data.email}`}
-											style={styles.linkBlack}
-										>
-											{section.data.email}
-										</Link>{" "}
-										|
-									</Text>
-								)}
-								{section.data?.github && (
-									<Text style={[styles.contactItem, styles.text]}>
-										<Text>GitHub: </Text>
-										<Link
-											style={styles.linkBlack}
-											src={`https://${extractUsername(section.data.github)}`}
-										>
-											{extractUsername(section.data.github)}
-										</Link>{" "}
-										|
-									</Text>
-								)}
-								{section.data?.linkedin && (
-									<Text style={[styles.contactItem, styles.text]}>
-										LinkedIn:{" "}
-										<Link
-											style={styles.linkBlack}
-											src={`https://${extractUsername(section.data.linkedin)}`}
-										>
-											{extractUsername(section.data.linkedin)}
-										</Link>{" "}
-										|
-									</Text>
-								)}
-								{section.data?.personalWebsite && (
-									<Text style={[styles.contactItem, styles.text]}>
-										Website:{" "}
-										<Link
-											style={styles.linkBlack}
-											src={`https://${extractUsername(
-												section.data.personalWebsite
-											)}`}
-										>
-											{extractUsername(section.data.personalWebsite)}
-										</Link>
-									</Text>
-								)}
+								{/* First Row */}
+								<View style={[styles.contactRow, { marginBottom: 2 }]}>
+									{section.data?.phoneNumber && (
+										<Text style={[styles.contactItem, styles.text]}>
+											Phone:{" "}
+											<Text style={styles.linkBlack}>
+												{section.data.phoneNumber}
+											</Text>{" "}
+											|
+										</Text>
+									)}
+									{section.data?.email && (
+										<Text style={[styles.contactItem, styles.text]}>
+											Email:{" "}
+											<Link
+												src={`mailto:${section.data.email}`}
+												style={styles.linkBlack}
+											>
+												{section.data.email}
+											</Link>{" "}
+											|
+										</Text>
+									)}
+									{section.data?.address && (
+										<Text style={[styles.contactItem, styles.text]}>
+											Address:{" "}
+											<Text style={styles.linkBlack}>
+												{section.data.address}
+											</Text>
+										</Text>
+									)}
+								</View>
+
+								{/* Second Row */}
+								<View style={styles.contactRow}>
+									{section.data?.linkedin && (
+										<Text style={[styles.contactItem, styles.text]}>
+											LinkedIn:{" "}
+											<Link
+												style={styles.linkBlack}
+												src={`https://${extractUsername(
+													section.data.linkedin
+												)}`}
+											>
+												{extractUsername(section.data.linkedin)}
+											</Link>{" "}
+											|
+										</Text>
+									)}
+									{section.data?.github && (
+										<Text style={[styles.contactItem, styles.text]}>
+											GitHub:{" "}
+											<Link
+												style={styles.linkBlack}
+												src={`https://${extractUsername(section.data.github)}`}
+											>
+												{extractUsername(section.data.github)}
+											</Link>{" "}
+											|
+										</Text>
+									)}
+									{section.data?.personalWebsite && (
+										<Text style={[styles.contactItem, styles.text]}>
+											Website:{" "}
+											<Link
+												style={styles.linkBlack}
+												src={`https://${extractUsername(
+													section.data.personalWebsite
+												)}`}
+											>
+												{extractUsername(section.data.personalWebsite)}
+											</Link>
+										</Text>
+									)}
+								</View>
 							</View>
 						</View>
 					)}
