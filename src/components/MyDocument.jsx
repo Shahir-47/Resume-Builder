@@ -304,7 +304,7 @@ const MyDocument = ({ sections, title }) => (
 											Email:{" "}
 											<Link
 												src={`mailto:${section.data.email}`}
-												style={styles.linkBlack}
+												style={styles.link}
 											>
 												{section.data.email}
 											</Link>{" "}
@@ -327,7 +327,7 @@ const MyDocument = ({ sections, title }) => (
 										<Text style={[styles.contactItem, styles.text]}>
 											LinkedIn:{" "}
 											<Link
-												style={styles.linkBlack}
+												style={styles.link}
 												src={`https://${extractUsername(
 													section.data.linkedin
 												)}`}
@@ -341,7 +341,7 @@ const MyDocument = ({ sections, title }) => (
 										<Text style={[styles.contactItem, styles.text]}>
 											GitHub:{" "}
 											<Link
-												style={styles.linkBlack}
+												style={styles.link}
 												src={`https://${extractUsername(section.data.github)}`}
 											>
 												{extractUsername(section.data.github)}
@@ -353,7 +353,7 @@ const MyDocument = ({ sections, title }) => (
 										<Text style={[styles.contactItem, styles.text]}>
 											Website:{" "}
 											<Link
-												style={styles.linkBlack}
+												style={styles.link}
 												src={`https://${extractUsername(
 													section.data.personalWebsite
 												)}`}
