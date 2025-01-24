@@ -289,26 +289,16 @@ const MyDocument = ({ sections, title }) => (
 								{section.data?.phoneNumber && (
 									<Text style={[styles.contactItem, styles.text]}>
 										Phone:{" "}
-										<Link
-											style={styles.linkBlack}
-											src={`tel:${section.data.phoneNumber}`}
-										>
+										<Text style={styles.linkBlack}>
 											{section.data.phoneNumber}
-										</Link>{" "}
+										</Text>{" "}
 										|
 									</Text>
 								)}
 								{section.data?.address && (
 									<Text style={[styles.contactItem, styles.text]}>
 										Address:{" "}
-										<Link
-											style={styles.linkBlack}
-											src={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-												section.data.address
-											)}`}
-										>
-											{section.data.address}
-										</Link>{" "}
+										<Text style={styles.linkBlack}>{section.data.address}</Text>{" "}
 										|
 									</Text>
 								)}
