@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
 	projectName: {
 		fontSize: 9,
 		fontWeight: 700,
-		marginRight: 2,
 		color: "#000000",
 	},
 	projectLink: {
