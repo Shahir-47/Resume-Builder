@@ -229,6 +229,7 @@ const extractUsername = (url) => {
 		const path = parsedUrl.pathname.startsWith("/")
 			? parsedUrl.pathname.slice(1)
 			: parsedUrl.pathname;
+		if (!path) return domain;
 		return `${domain}/${path}`;
 	} catch (error) {
 		console.error("Invalid URL:", url);
