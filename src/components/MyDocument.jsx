@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
 	},
 	bulletPoints: {
 		marginLeft: 5,
-		marginRight: 6,
+		marginRight: 6.5,
 	},
 	bulletText: {
 		fontSize: 9,
